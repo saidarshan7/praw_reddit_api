@@ -56,6 +56,44 @@ df = pd.DataFrame(dict)
 print(df.head().to_markdown())
 
 
+all_reddit = reddit.subreddit('all')
+posts =all_reddit.hot(limit=100)
+
+dict = {
+    "title":[],
+    "subreddit":[],
+    "score":[],
+    "id":[],
+    "created":[],
+    "body":[]
+}
+
+for submission in posts:
+    dict["title"].append(submission.title)
+    dict["subreddit"].append(submission.subreddit)
+    dict["score"].append(submission.score)
+    dict["id"].append(submission.id)
+    dict["created"].append(submission.created)
+    dict["body"].append(submission.selftext)
+
+
+def_all = pd.DataFrame(dict)
+def_all.head().to_markdown()
+
+# len(def_all['subreddit'].unique)
+df.to_csv('golang_subreddit_posts.csv')
+def_all.to_csv('all_reddit_posts')
+
+
+
+
+
+
+
+    
+
+
+
 
 
 
